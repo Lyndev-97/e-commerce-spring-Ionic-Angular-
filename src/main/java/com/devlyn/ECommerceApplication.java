@@ -19,6 +19,8 @@ import com.devlyn.repositories.CidadeRepository;
 import com.devlyn.repositories.ClienteRepository;
 import com.devlyn.repositories.EnderecoRepository;
 import com.devlyn.repositories.EstadoRepository;
+import com.devlyn.repositories.PagamentoRepository;
+import com.devlyn.repositories.PedidoRepository;
 import com.devlyn.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -36,6 +38,10 @@ public class ECommerceApplication implements CommandLineRunner {
 	private ClienteRepository clienteRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private PedidoRepository PedidoRepository;
+	@Autowired
+	private PagamentoRepository PagamentoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ECommerceApplication.class, args);

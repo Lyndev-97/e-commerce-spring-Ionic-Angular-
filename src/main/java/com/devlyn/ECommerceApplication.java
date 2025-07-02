@@ -26,6 +26,7 @@ import com.devlyn.repositories.CidadeRepository;
 import com.devlyn.repositories.ClienteRepository;
 import com.devlyn.repositories.EnderecoRepository;
 import com.devlyn.repositories.EstadoRepository;
+import com.devlyn.repositories.ItemPedidoRepository;
 import com.devlyn.repositories.PagamentoRepository;
 import com.devlyn.repositories.PedidoRepository;
 import com.devlyn.repositories.ProdutoRepository;
@@ -49,6 +50,8 @@ public class ECommerceApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	
 	public static void main(String[] args) {
@@ -157,6 +160,8 @@ public class ECommerceApplication implements CommandLineRunner {
 		p1.getItens().addAll(Arrays.asList(ip1));
 		p2.getItens().addAll(Arrays.asList(ip3));
 		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 			
 	}
 }

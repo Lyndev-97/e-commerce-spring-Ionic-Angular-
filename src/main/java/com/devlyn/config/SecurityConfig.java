@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -24,6 +25,7 @@ import com.devlyn.security.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) 
 public class SecurityConfig {
 
 	@Autowired
@@ -39,10 +41,12 @@ public class SecurityConfig {
 	 
 	 private static final String[] PUBLIC_MATCHERS_GET = {
 		        "/produtos/**",
-		        "/categories/**",
-		        "/clientes/**"
+		        "/categories/**"
 		    };
 
+	 private static final String[] PUBLIC_MATCHERS_POST = {
+		        "/clientes/**"
+		    };
 	 
 		    @Bean
 		    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -72,6 +76,7 @@ public class SecurityConfig {
 		            .authorizeHttpRequests(authz -> authz
 		            	.requestMatchers(HttpMethod.POST, "/login").permitAll()
 		                .requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
+		                .requestMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
 		                .requestMatchers(PUBLIC_MATCHERS).permitAll()
 		                .anyRequest().authenticated()
 		            ).authenticationProvider(authenticationProvider());

@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.devlyn.security.JWTAuthenticationFilter;
+import com.devlyn.security.JWTAuthorizationFilter;
 import com.devlyn.security.JWTUtil;
 
 @Configuration
@@ -75,6 +76,13 @@ public class SecurityConfig {
 		                .anyRequest().authenticated()
 		            ).authenticationProvider(authenticationProvider());
 		        http.addFilter(authFilter);
+		        http.addFilter(new JWTAuthorizationFilter(
+		        		authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)),
+		        	    jwtUtil,
+		        	    userDetailsService
+		        	));
+
+		        
 
 		        // Caso use H2-console, outra forma de desabilitar o frameOptions para permitir o acesso via iframe
 		        //http.headers().frameOptions().disable();

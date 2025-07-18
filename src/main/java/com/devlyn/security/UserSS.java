@@ -52,4 +52,24 @@ public class UserSS implements UserDetails {
 		return email;
 	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+	return true;	
+	}
+	
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+	
+	public boolean hasRole(Perfil perfil) {
+		
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
+	}
+
 }

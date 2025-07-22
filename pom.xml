@@ -142,6 +142,20 @@
 			<version>2.16.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-core</artifactId>
+			<version>1.12.696</version> <!-- ou a versão mais recente/compatível -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.12.696</version> <!-- Ou a versão compatível que você
+			estiver usando -->
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.devlyn.services.exceptions.FileException;
+
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
@@ -34,7 +36,7 @@ public class S3Service {
             String contentType = multipartFile.getContentType();
             return uploadFile(is, fileName, contentType);
         } catch (IOException e) {
-            throw new RuntimeException("Erro de IO: " + e.getMessage());
+            throw new FileException("Erro de IO: " + e.getMessage());
         }
     }
 
@@ -58,9 +60,9 @@ public class S3Service {
             return URI.create(objectUrl);
 
         } catch (S3Exception e) {
-            throw new RuntimeException("Erro ao realizar upload para o S3: " + e.getMessage());
+            throw new FileException("Erro ao realizar upload para o S3: " + e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException("Erro de IO ao processar o arquivo: " + e.getMessage());
+            throw new FileException("Erro de IO ao processar o arquivo: " + e.getMessage());
         }
     }
 }

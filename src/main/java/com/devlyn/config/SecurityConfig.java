@@ -1,5 +1,7 @@
 package com.devlyn.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -119,7 +121,7 @@ public class SecurityConfig {
 		    @Bean
 		    public CorsConfigurationSource corsConfigurationSource() {
 		        CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-
+		        config.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
 		        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		        source.registerCorsConfiguration("/**", config);
 		        return source;

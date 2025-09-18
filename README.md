@@ -1,6 +1,6 @@
-##Descrição :
+# Descrição :
 
-#VISÃO TÉCNICA - BACK END:
+## VISÃO TÉCNICA - BACK END:
 
 - API Rest usando Java com Spring Boot e banco de dados MySQL.
 - JPA com Hibernate para mapeamento objeto-relacional
